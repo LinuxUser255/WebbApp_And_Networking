@@ -2,7 +2,6 @@
 
 import json
 import socket
-
 import h2.connection
 import h2.events
 import h2.config
@@ -11,15 +10,15 @@ import h2.config
 # This script is a from: https://python-hyper.org/projects/h2/en/stable/basic-usage.html#writing-your-server
 # And formatted using black: https://pypi.org/project/black/
 # However, it contains more explaination & Documentation in the form of Code Comments & Docstrings, than the original. 
-# Annotations and type hints may be added later.
+# Usage: In one terminal run this script, and in another enter this command: hyper --h2 GET http://localhost:8080/
 def send_response(conn, event):
     '''
     Take the H2Connection Object and the signaling event request
+    In order to store a request-response pair, a bi-directional coms channel called "stream_id is used.
     H2 does not use unicode string, Except for Headers, which are auto encoded into UTF-8
     Send a response when a connection is received.
     This response will be set equal to data=
     '''
-    # A stream_id is a bi-directional coms channel holding a request and response pair
     stream_id = event.stream_id
     response_data = json.dumps(dict(event.headers)).encode('utf-8')
 
@@ -40,8 +39,11 @@ def send_response(conn, event):
 
 def handle(sock):
     '''
-    The H2Connection object writes data to an internal buffer
+    This is an H2Connection object to receive & handle data. 
+    That data is writen to an internal buffer
     and conn.initiate() sends a bit of data called the preamble.
+    The recv function is used to read data from the socket 
+    & has a max number/ammount of data it can take
     '''
     config = h2.config.H2Configuration(client_side=False)
     conn = h2.connection.H2Connection(config=config)
@@ -49,7 +51,6 @@ def handle(sock):
     sock.sendall(conn.data_to_send())
 
     while True:
-        # recv has a max number/ammount of data it can take
         data = sock.recv(65535)
         if not data:
             break
@@ -64,7 +65,10 @@ def handle(sock):
             sock.sendall(data_to_send)
 
 
-# A socket object bound it to an address.
+# A socket object bound to an address.
+# This is the first block of code created when building this server.
+# The goal is to sucessfully create something that can listen for a connection from a client.
+# This is tested by running this script in one window, and curl http://localhost:8080/ and another.
 sock = socket.socket()
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('0.0.0.0', 8080))
