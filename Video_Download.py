@@ -3,8 +3,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-# specify the URL of the archive here
-archive_url = "http://target-webapp.com/"
+# Specify the URL from which to download between the double quotes
+# Example: 
+# archive_url = "http://videowebsite.com/"
+archive_url = ""
 
 def get_video_links():
     r = requests.get(archive_url)
