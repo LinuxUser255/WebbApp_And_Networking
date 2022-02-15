@@ -7,8 +7,11 @@ import h2.connection
 import h2.events
 import h2.config
 
-
-# HTTP/2 Server that can accept inbound connections.
+# This is a basic HTTP/2 Server that can accept inbound connections.
+# This script is a from: https://python-hyper.org/projects/h2/en/stable/basic-usage.html#writing-your-server
+# And formatted using black: https://pypi.org/project/black/
+# However, it contains more explaination & Documentation in the form of Code Comments & Docstrings, than the original. 
+# Annotations and type hints may be added later.
 def send_response(conn, event):
     '''
     Take the H2Connection Object and the signaling event request
@@ -31,7 +34,7 @@ def send_response(conn, event):
     )
     conn.send_data(
         stream_id=stream_id,
-        data=response_data,   #b"it works!",  # <- sends response when signal is received.
+        data=response_data,   
         end_stream=True
     )
 
