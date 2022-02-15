@@ -6,11 +6,14 @@ import h2.connection
 import h2.events
 import h2.config
 
-# This is a basic HTTP/2 Server that can accept inbound connections.
+# This is a basic HTTP/2 Server intended to serve as a high-level overview to the workings of the new version of the HTTP Protocl:
+# HTTP/2, commonly referred to as H2.
+# For the complete detailed technical overview of the HTTP/2 protocol see RFC 7540:
+# https://datatracker.ietf.org/doc/html/rfc7540
 # This script is a from: https://python-hyper.org/projects/h2/en/stable/basic-usage.html#writing-your-server
 # And formatted using black: https://pypi.org/project/black/
-# However, it contains more explaination & Documentation in the form of Code Comments & Docstrings, than the original. 
-# Usage: In one terminal run this script, and in another enter this command: hyper --h2 GET http://localhost:8080/
+# However, it contains more explaination & Documentation in the form of Code Comments & Docstrings, than the original script. 
+# Usage: In one terminal run this script, and in another enter the following command: hyper --h2 GET http://localhost:8080/
 def send_response(conn, event):
     '''
     Take the H2Connection Object and the signaling event request
@@ -41,7 +44,8 @@ def handle(sock):
     '''
     This is an H2Connection object to receive & handle data. 
     That data is writen to an internal buffer
-    and conn.initiate() sends a bit of data called the preamble.
+    The conn.initiate_connection() method establishes the connection and 
+    sends a bit of data called the preamble.
     The recv function is used to read data from the socket 
     & has a max number/ammount of data it can take
     '''
