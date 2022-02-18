@@ -6,7 +6,7 @@ import h2.connection
 import h2.events
 import h2.config
 
-# This is a basic HTTP/2 Server intended to serve as a high-level overview to the workings of the new version of the HTTP Protocl:
+# This is a basic HTTP/2 Server intended to serve as a high-level overview to the workings of the new version of the HTTP Protocol:
 # HTTP/2, commonly referred to as H2.
 # For the complete detailed technical overview of the HTTP/2 protocol see RFC 7540:
 # https://datatracker.ietf.org/doc/html/rfc7540
