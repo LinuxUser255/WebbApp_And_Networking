@@ -10,7 +10,7 @@ import h2.config
 # HTTP/2, commonly referred to as H2.
 # For the complete detailed technical overview of the HTTP/2 protocol see RFC 7540:
 # https://datatracker.ietf.org/doc/html/rfc7540
-# This script is a from: https://python-hyper.org/projects/h2/en/stable/basic-usage.html#writing-your-server
+# This script is from: https://python-hyper.org/projects/h2/en/stable/basic-usage.html#writing-your-server
 # And formatted using black: https://pypi.org/project/black/
 # However, it contains more explaination & Documentation in the form of Code Comments & Docstrings, than the original script. 
 # Usage: In one terminal run this script, and in another enter the following command: hyper --h2 GET http://localhost:8080/
@@ -72,7 +72,7 @@ def handle(sock):
 # A socket object bound to an address.
 # This is the first block of code created when building this server.
 # The goal is to sucessfully create something that can listen for a connection from a client.
-# This is tested by running this script in one window, and curl http://localhost:8080/ and another.
+# This is tested by running this script in one window, and curl http://localhost:8080/ in another terminal.
 sock = socket.socket()
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('0.0.0.0', 8080))
